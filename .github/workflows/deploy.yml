@@ -10,46 +10,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Setup Node.js (Angular requires Node 20+)
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
 
-      # 3. Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # 4. Build Angular app
       - name: Build Angular
         run: npm run build -- --configuration production
 
-      # 5. Copy build files to EC2 (USER DIRECTORY ONLY)
-      - name: Copy build to EC2
+      # ✅ COPY ONLY browser/ OUTPUT
+      - name: Copy Angular browser build to EC2
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ubuntu
           key: ${{ secrets.EC2_KEY }}
-          source: dist/*
-          target: /home/ubuntu/angular-dist
-          strip_components: 1
+          source: dist/*/browser/*
+          target: /var/www/html
+          strip_components: 3
           rm: true
           port: 22
-
-      # 6. Move files to Nginx using sudo
-      - name: Deploy to Nginx
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ubuntu
-          key: ${{ secrets.EC2_KEY }}
-          script: |
-            sudo rm -rf /var/www/html/*
-            sudo cp -r /home/ubuntu/angular-dist/* /var/www/html/
-            sudo chown -R www-data:www-data /var/www/html
-            sudo systemctl restart nginx
