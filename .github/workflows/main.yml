@@ -33,3 +33,4 @@ jobs:
           source: "dist/*/browser/*"
           target: "/var/www/html"
           strip_components: 3
+          overwrite: true
