@@ -13,4 +13,8 @@ export class App {
   openAwsLogo() {
     window.open('https://aws.amazon.com/what-is-aws/', '_blank');
   }
+
+  openGitHubActions() {
+    window.open('https://github.com/lubaib-hub/angular-devops-demo/actions/workflows/deploy.yml', '_blank');
+  }
 }
