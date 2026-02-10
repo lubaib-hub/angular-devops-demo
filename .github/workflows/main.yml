@@ -1,37 +1,54 @@
-name: Angular CI/CD to EC2
+name: Deploy Angular App to EC2
 
 on:
   push:
     branches:
-      - master   # change to main IF your repo uses main
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      # STEP 1: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
+      # STEP 2: Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 18
 
+      # STEP 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
+      # STEP 4: Build Angular app
       - name: Build Angular
         run: npm run build -- --configuration production
 
-      - name: Deploy to EC2
+      # STEP 5: Upload build to EC2 (SAFE PATH)
+      - name: Copy build to EC2
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.EC2_HOST }}
           username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          source: "dist/*/browser/*"
-          target: "/var/www/html"
-          strip_components: 3
-          overwrite: true
+          key: ${{ secrets.EC2_KEY }}
+          source: dist/*
+          target: /home/ubuntu/angular-dist
+          strip_components: 1
           rm: true
+
+      # STEP 6: Move files to Nginx using sudo
+      - name: Deploy to Nginx
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_KEY }}
+          script: |
+            sudo rm -rf /var/www/html/*
+            sudo cp -r /home/ubuntu/angular-dist/* /var/www/html/
+            sudo chown -R www-data:www-data /var/www/html
+            sudo systemctl restart nginx
