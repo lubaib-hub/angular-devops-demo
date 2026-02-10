@@ -9,4 +9,8 @@ import { RouterOutlet } from '@angular/router';
 })
 export class App {
   protected readonly title = signal('angular-devops-demo');
+
+  openAwsLogo() {
+    window.open('https://aws.amazon.com/what-is-aws/', '_blank');
+  }
 }
