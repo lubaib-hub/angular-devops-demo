@@ -34,3 +34,4 @@ jobs:
           target: "/var/www/html"
           strip_components: 3
           overwrite: true
+          rm: true
