@@ -1,14 +1,14 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Navbar } from './navbar/navbar';
+import { signal } from '@angular/core';
 @Component({
-  selector: 'app-root',
-  imports: [RouterOutlet, Navbar],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  selector: 'app-main-page',
+  imports: [],
+  templateUrl: './main-page.html',
+  styleUrl: './main-page.css',
 })
-export class App {
+export class MainPage {
+
   protected readonly title = signal('angular-devops-demo');
 
   constructor(private router: Router) {

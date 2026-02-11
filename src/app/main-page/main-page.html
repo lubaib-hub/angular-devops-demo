@@ -1,0 +1,24 @@
+<div class="container">
+    <img src="aws-logo.png" alt="AWS Logo" class="aws-logo">
+
+    <h1>{{ title() }}</h1>
+
+    <div class="content">
+        <p>This is the main page of the Angular DevOps Demo application.</p>
+        <p>It demonstrates a simple CI/CD pipeline using GitHub Actions and AWS EC2.</p>
+    </div>
+
+    <div class="button-container">
+        <button class="aws-btn" (click)="openAwsLogo()">
+            Open AWS Logo
+        </button>
+
+        <button class="github-btn" (click)="openGitHubActions()">
+            Open GitHub Actions
+        </button>
+
+        <button class="aws-btn" (click)="goToNew()">
+            Go to New Page
+        </button>
+    </div>
+</div>
