@@ -19,4 +19,8 @@ export class Navbar {
   main() {
     this.router.navigate(['/']);
   }
+
+  ec2() {
+    this.router.navigate(['/ec2']);
+  }
 }

@@ -1,0 +1,73 @@
+/* AWS Global Style */
+body {
+    background-color: #f2f3f3;
+    margin: 0;
+    font-family: "Amazon Ember", Arial, sans-serif;
+    color: #16191f;
+}
+
+/* Header */
+.aws-header {
+    background-color: #232f3e;
+    color: white;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.aws-header h1 {
+    margin: 0;
+    font-size: 36px;
+}
+
+.aws-header p {
+    margin-top: 10px;
+    color: #ff9900;
+    font-size: 16px;
+}
+
+/* Container */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* Card layout */
+.card {
+    background: white;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Section titles */
+h2 {
+    border-left: 6px solid #ff9900;
+    padding-left: 12px;
+    color: #232f3e;
+}
+
+/* YAML block */
+.yaml-card pre {
+    background: #1e1e1e;
+    color: #00ff90;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: Consolas, monospace;
+    font-size: 14px;
+}
+
+/* Explanation headings */
+.explanation h3 {
+    margin-top: 20px;
+}
+
+/* Inline code */
+code {
+    background: #f4f4f4;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 13px;
+}
