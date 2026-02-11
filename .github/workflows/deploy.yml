@@ -3,7 +3,6 @@ name: Deploy Angular App to EC2
 on:
   push:
     branches:
-      - develop
       - master   # change to main if your repo uses main
 
 jobs:
