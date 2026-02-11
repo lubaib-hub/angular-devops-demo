@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master   # change to main if your repo uses main
+      - develop
 
 jobs:
   deploy:
