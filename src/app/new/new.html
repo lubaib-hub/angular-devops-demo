@@ -1,1 +1,44 @@
-<p>new works!</p>
+<div class="container">
+
+    <h1>Angular CI/CD Workflow</h1>
+
+    <div class="yaml-block">
+        <pre>{{ yamlContent }}</pre>
+    </div>
+
+    <div class="explanation">
+        <h2>Explanation</h2>
+
+        <h3>1️⃣ Trigger</h3>
+        <p>
+            The workflow runs automatically when code is pushed to
+            <strong>master</strong> or <strong>develop</strong> branches.
+        </p>
+
+        <h3>2️⃣ Runner</h3>
+        <p>
+            GitHub provides an Ubuntu virtual machine to execute the pipeline.
+        </p>
+
+        <h3>3️⃣ Build Process</h3>
+        <p>
+            Node.js is installed, dependencies are installed,
+            and Angular is built in production mode.
+        </p>
+
+        <h3>4️⃣ Deployment</h3>
+        <p>
+            The <code>browser/</code> output folder is securely copied to EC2.
+            Then files are moved to <code>/var/www/html</code>
+            and Nginx is restarted.
+        </p>
+
+        <h3>5️⃣ Security</h3>
+        <p>
+            Sensitive values like server IP and SSH private key
+            are stored securely in GitHub Secrets.
+        </p>
+
+    </div>
+
+</div>
