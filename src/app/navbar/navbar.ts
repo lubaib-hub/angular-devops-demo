@@ -26,5 +26,5 @@ export class Navbar {
 
   test() {
     this.router.navigate(['/test']);
-  
+  }
 }
